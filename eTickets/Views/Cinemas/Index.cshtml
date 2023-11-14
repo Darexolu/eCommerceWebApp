@@ -1,0 +1,49 @@
+﻿@model IEnumerable<Cinema>
+@{
+    ViewData["Title"] = "List of Cinemas";
+}
+
+<div class="row">
+    <div class="col-md-8 offset-2">
+        <table class="table">
+            <thead>
+                <tr class="text-center">
+                    <th>@Html.DisplayNameFor(model => model.Logo)</th>
+                    <th>@Html.DisplayNameFor(model => model.Name)</th>
+                    <th>@Html.DisplayNameFor(model => model.Description)</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td class="align-middle">
+                            <img class="rounded-circle" src="@item.Logo" alt="@item.Name" style="max-width:100px" />
+                        </td>
+                        <td class="align-middle">
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td class="align-middle">
+                            @Html.DisplayFor(modelItem => item.Description)
+                        </td>
+                        <td class="align-middle">
+                            <div class="row">
+                                <div class="col-lg-4 col-md-4 col-sm-3" style="height: 63px; display: flex; justify-content:center; ">
+                                    <a style="padding-top: 10px" class="btn btn-outline-primary bg-primary text-white" ><i class="bi bi-pencil-square">Edit</i></a>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-3" style="padding-left: 2px">
+                                    <a class="btn btn-outline-info bg-info text-white"><i class="bi bi-eye">Details</i></a>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-3">
+                                    <a class="btn btn-outline-danger bg-danger text-white" ><i class="bi bi-trash">Delete</i></a>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+
+        </table>
+    </div>
+</div>

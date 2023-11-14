@@ -1,0 +1,50 @@
+﻿@model IEnumerable<Producer>
+@{
+    ViewData["Title"] = "List of Producers";
+}
+
+<div class="row">
+    <div class="col-md-8 offset-2">
+        <table class="table">
+            <thead>
+                <tr class="text-center">
+                    <th>@Html.DisplayNameFor(model => model.ProfilePictureURL)</th>
+                    <th>@Html.DisplayNameFor(model => model.FullName)</th>
+                    <th>@Html.DisplayNameFor(model => model.Bio)</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td class="align-middle">
+                            <img class="rounded-circle" src="@item.ProfilePictureURL" alt="@item.FullName" style="max-width:150px" />
+                        </td>
+                        <td class="align-middle">
+                            @Html.DisplayFor(modelItem => item.FullName)
+                        </td>
+                        <td class="align-middle">
+                            @Html.DisplayFor(modelItem => item.Bio)
+                        </td>
+                        <td class="align-middle">
+                            <div class="row">
+                                <div class="col-lg-4 col-md-4 col>-sm-3" style="height: 63px; display: flex; justify-content:center; ">
+                                    <a style="padding-top: 10px" class="btn btn-outline-primary bg-primary text-white"><i class="bi bi-pencil-square">Edit</i></a>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-3" style="padding-left: 2px"  >
+                                    <a class="btn btn-outline-info bg-info text-white"><i class="bi bi-eye">Details</i></a>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-3">
+                                    <a class="btn btn-outline-danger bg-danger text-white"><i class="bi bi-trash">Delete</i></a>
+                                </div>
+                            </div>
+                            
+                        </td>
+                    </tr>
+                }
+            </tbody>
+
+        </table>
+    </div>
+</div>
