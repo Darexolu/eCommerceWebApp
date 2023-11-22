@@ -1,4 +1,5 @@
 ﻿using eTickets.Data;
+using eTickets.Data.Base;
 using eTickets.Data.Services;
 using eTickets.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -8,6 +9,7 @@ namespace eTickets.Controllers
     public class ActorsController : Controller
     {
         private readonly IActorsService _service;
+       
         public ActorsController(IActorsService service)
         {
             _service = service;

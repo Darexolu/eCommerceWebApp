@@ -1,17 +1,27 @@
-﻿using System.ComponentModel;
+﻿using eTickets.Data.Base;
+using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace eTickets.Models
 {
-    public class Cinema
+    public class Cinema:IEntityBase
     {
         [Key]
         public int Id { get; set; }
-        [DisplayName(displayName: "Cinema Logo")]
+
+        [Display(Name = "Cinema Logo")]
+        [Required(ErrorMessage = "Cinema logo is required")]
         public string Logo { get; set; }
-        [DisplayName(displayName: "Cinema Name")]
+
+        [Display(Name = "Cinema Name")]
+        [Required(ErrorMessage = "Cinema name is required")]
         public string Name { get; set; }
-        [DisplayName(displayName: "Description")]
+
+        [Display(Name = "Description")]
+        [Required(ErrorMessage = "Cinema description is required")]
         public string Description { get; set; }
 
         //Relationships
