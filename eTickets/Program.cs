@@ -19,8 +19,8 @@ builder.Services.AddScoped<IActorsService, ActorsService>();
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<AppDbContext>().AddDefaultUI().AddDefaultTokenProviders();
 builder.Services.AddScoped<IActorsService, ActorsService>();
 builder.Services.AddScoped(sc => ShoppingCart.GetShoppingCart(sc));
-//builder.Services.AddScoped<IProducersService, ProducersService>();
-//builder.Services.AddScoped<ICinemasService, CinemasService>();
+builder.Services.AddScoped<IProducersService, ProducersService>();
+builder.Services.AddScoped<ICinemasService, CinemasService>();
 //builder.Services.AddScoped<IMoviesService, MoviesService>();
 //builder.Services.AddScoped<IOrdersService, OrdersService>();
 builder.Services.AddSession(options =>
