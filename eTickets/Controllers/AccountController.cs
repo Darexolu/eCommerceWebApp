@@ -66,27 +66,46 @@ namespace eTickets.Controllers
         [HttpPost]
         public async Task<IActionResult> Register(RegisterVM registerVM)
         {
-            if (!ModelState.IsValid) return View(registerVM);
+            if (!ModelState.IsValid)
+            {
+                return View(registerVM);
+            }
 
-            var user = await _userManager.FindByEmailAsync(registerVM.EmailAddress);
-            if(user != null)
+            var existingUser = await _userManager.FindByEmailAsync(registerVM.EmailAddress);
+            if (existingUser != null)
             {
                 TempData["Error"] = "This email address is already in use";
                 return View(registerVM);
             }
 
-            var newUser = new ApplicationUser()
+            var newUser = new ApplicationUser
             {
                 FullName = registerVM.FullName,
                 Email = registerVM.EmailAddress,
                 UserName = registerVM.EmailAddress
             };
+
             var newUserResponse = await _userManager.CreateAsync(newUser, registerVM.Password);
 
             if (newUserResponse.Succeeded)
+            {
                 await _userManager.AddToRoleAsync(newUser, UserRoles.User);
-            return View("RegisterCompleted");
+                // Optionally sign in the user after registration.
+                await _signInManager.SignInAsync(newUser, isPersistent: false);
+
+                return RedirectToAction("Index", "Movies");
+            }
+            else
+            {
+                foreach (var error in newUserResponse.Errors)
+                {
+                    ModelState.AddModelError(string.Empty, error.Description);
+                }
+
+                return View(registerVM);
+            }
         }
+
 
         [HttpPost]
         public async Task<IActionResult> Logout()

@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace eTickets.Controllers
 {
-    //[Authorize(Roles = UserRoles.Admin)]
+    [Authorize(Roles = UserRoles.Admin)]
     public class CinemasController : Controller
     {
         private readonly ICinemasService _service;
